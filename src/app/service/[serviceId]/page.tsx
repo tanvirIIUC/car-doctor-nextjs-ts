@@ -6,7 +6,7 @@ const ServiceDetailsPage = async ({ params }: { params: Promise<{ serviceId: str
     const id = await params;
     // const servicesCollection = dbConnect("services") 
     // const data = await servicesCollection.findOne({_id: new ObjectId(id.serviceId )})
-    const res = await fetch(`http://localhost:3000/api/service/${id.serviceId}`);
+    const res = await fetch(`https://car-doctor-nextjs-ts.vercel.app/api/service/${id.serviceId}`);
     const data = await res.json();
 
     return <div className="mt-5">

@@ -20,7 +20,7 @@ const MyBookingTable: React.FC<MyBookingTableProps> = ({ data, setData }) => {
 
   const handleDelete = async (id: string) => {
     setLoading(true);
-    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+    const res = await fetch(`https://car-doctor-nextjs-ts.vercel.app/api/service/${id}`, {
       method: "DELETE",
     });
 

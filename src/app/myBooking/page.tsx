@@ -12,7 +12,7 @@ const MyBookingPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/service");
+        const res = await fetch("https://car-doctor-nextjs-ts.vercel.app/api/service");
         const data = await res.json();
         setData(data);
       } catch (error) {
