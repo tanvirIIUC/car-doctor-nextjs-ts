@@ -6,17 +6,15 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 
-const ServicesArea = async () => {
+const Services = async () => {
   const servicesCollection = dbConnect("services");
-  const rawData: WithId<Document>[] = await servicesCollection.find({}).limit(3).toArray();
+  const rawData: WithId<Document>[] = await servicesCollection.find({}).toArray();
   const data: ServiceItem[] = rawData.map((doc) => ({
     _id: doc._id.toString(),
     img: doc.img,
     title: doc.title,
     price: doc.price,
   }));
-//   const data: ServiceItem[] = await servicesCollection.find({}).toArray();
-
   return (
     <div className="flex flex-col items-center my-10">
       <h1 className="text-[#FF3811] font-bold text-xl">Service</h1>
@@ -49,9 +47,9 @@ const ServicesArea = async () => {
           </div>
         ))}
       </div>
-      <Link className="bg-blue-700 text-white my-5 px-4 py-2 rounded-xl" href={'/services'}>See More</Link>
+     
     </div>
   );
 };
 
-export default ServicesArea;
+export default Services;

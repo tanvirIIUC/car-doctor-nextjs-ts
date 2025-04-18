@@ -1,3 +1,4 @@
+"use server"
 import dbConnect from "@/lib/dbConnection";
 import { UserT } from "@/types"; 
 import bcrypt from "bcrypt";
@@ -30,15 +31,15 @@ export const registerUser = async (payload: UserT): Promise<RegisterResponse> =>
     payload.password = hashPassword;
 
     // Insert the new user into the database
-    const result = await userCollection.insertOne(payload as any);
+    const result = await userCollection.insertOne(payload as object);
 
     if (result.acknowledged) {
       return { message: "User created successfully", status: 201 };
     } else {
       return { message: "Failed to create user", status: 500 };
     }
-  } catch (err: any) {
-    console.error(err.message);
+  } catch (err:unknown) {
+    console.error(err);
     return { message: "Something went wrong, please try again later", status: 500 };
   }
 };

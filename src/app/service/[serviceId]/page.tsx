@@ -1,11 +1,9 @@
 
-import dbConnect from "@/lib/dbConnection";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
 
-const ServiceDetailsPage = async ({params}:{params:string}) => {
-    const id : any = await params;
+const ServiceDetailsPage = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
+    const id = await params;
     // const servicesCollection = dbConnect("services") 
     // const data = await servicesCollection.findOne({_id: new ObjectId(id.serviceId )})
     const res = await fetch(`http://localhost:3000/api/service/${id.serviceId}`);
@@ -31,8 +29,8 @@ const ServiceDetailsPage = async ({params}:{params:string}) => {
             <div className="w-[30%] flex flex-col items-center">
                 <p className="text-4xl font-semibold mb-4"> Price : ${data?.price}</p>
                 <Link href={`/checkout/${data?._id}`} className="py-2 cursor-pointer text-center bg-amber-600 text-white font-semibold px-7 rounded-xl">Checkout</Link>
-           
-                
+
+
 
             </div>
 

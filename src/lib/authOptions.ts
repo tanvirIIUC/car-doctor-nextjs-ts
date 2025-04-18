@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
 
         if (!user) return null;
 
-        // Return user object in expected shape
+        
         return {
           id: user._id.toString(),
           name: user.name || null,
@@ -68,4 +68,9 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt', // Required for getToken to work in middleware
+  },
+  
 };

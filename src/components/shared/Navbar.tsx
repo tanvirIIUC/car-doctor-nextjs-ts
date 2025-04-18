@@ -5,6 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { RxAvatar } from "react-icons/rx";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   label: string;
@@ -13,15 +14,17 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "MyBooking", href: "/myBooking" },
   { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  // { label: "Contact", href: "/contact" },
 ];
 
 const Navbar: React.FC = () => {
   const {data,status}= useSession();
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const pathname = usePathname(); // Get the current route
+  const isActive = (path:string) => pathname === path ? "text-blue-500 font-bold" : "text-gray-700";
 
   return (
     <nav className="bg-white sticky top-0 z-50">
@@ -33,12 +36,13 @@ const Navbar: React.FC = () => {
         <ul className="hidden md:flex space-x-6 mx-auto">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a
-                href={item.href}
-                className="text-gray-700 hover:text-blue-600 transition"
+              <Link
+                href={item?.href}
+                className={`${isActive(item.href)} hover:text-blue-600 transition`}
+                // className="text-gray-700 hover:text-blue-600 transition"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -112,7 +116,8 @@ const Navbar: React.FC = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block text-gray-700 hover:text-blue-600 transition"
+                  className={`${isActive(item.href)} block hover:text-blue-600 transition`}
+                 
                 >
                   {item.label}
                 </Link>

@@ -3,14 +3,14 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Loading from "@/app/loading";
 import SocialLogin from "./SocialLogin";
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter()
+    // const router = useRouter()
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
@@ -26,10 +26,11 @@ const LoginForm = () => {
                 useCallback: "/",
                 redirect: false,
             });
-            console.log(response)
+            //  console.log(response)
     
             if (response?.ok) {
-                router.push("/");
+                // router.push("/myBooking");
+                window.location.href = "/myBooking";
                 form.reset();
                 toast.success("Log in successful");
             } else {
@@ -83,7 +84,7 @@ const LoginForm = () => {
             </form>
             <SocialLogin/>
             <p className="text-center text-sm text-gray-600 mt-4">
-                Don't have an account? <Link href="/register" className="text-[#FF3811] hover:underline">Register</Link>
+                Don&apos;t have an account? <Link href="/register" className="text-[#FF3811] hover:underline">Register</Link>
             </p>
         </div>
     </>

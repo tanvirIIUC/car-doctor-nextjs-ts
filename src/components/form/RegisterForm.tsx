@@ -1,4 +1,5 @@
 "use client"
+
 import { registerUser } from "@/action/auth/RegisterUser";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Link from "next/link";

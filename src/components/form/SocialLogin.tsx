@@ -1,12 +1,11 @@
 "use client"
 
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
 const SocialLogin = () => {
-    const router = useRouter();
+    // const router = useRouter();
     const {status}= useSession()
     const handleSocial = async (providerName:string) => {
         signIn(providerName)
@@ -15,7 +14,8 @@ const SocialLogin = () => {
 
     useEffect(()=>{
         if(status==="authenticated"){
-            router.push('/')
+            // router.push('/myBooking');
+            window.location.href = "/myBooking";
         }
 
     },[status])

@@ -1,3 +1,4 @@
+"use server"
 import dbConnect from "@/lib/dbConnection";
 import { UserT } from "@/types";
 
@@ -24,8 +25,8 @@ export const loginUser = async (payload: UserT) => {
     }
 
     return user;
-  } catch (err: any) {
-    console.error("Login error:", err.message);
+  } catch (err: unknown) {
+    console.error("Login error:", err);
     return null;
   }
 };
